@@ -1,0 +1,11 @@
+{
+    "@@locale": "en",
+    "counterAppBarTitle": "Counter",
+    "hello" : "Hello",
+    "@counterAppBarTitle": {
+        "description": "Text shown in the AppBar of the Counter Page"
+    },
+     "todo" : "To Do",
+     "doing" : "Doing",
+     "done" : "Done"
+ }

@@ -1,0 +1,11 @@
+{
+    "@@locale": "km",
+    "counterAppBarTitle": "ការបានបន្ថែម",
+    "hello" : "សួស្តីអ្នក!",
+    "@counterAppBarTitle": {
+        "description": "ចំណងជើងរបស់របស់ការបានបន្ថែម"
+    },
+    "todo" : "កម្មវិធីបញ្ជី",
+    "doing" : "កំពុងធ្វើ",
+    "done" : "បានធ្វើរួច"
+}

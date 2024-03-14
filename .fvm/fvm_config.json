@@ -1,0 +1,17 @@
+{
+  "flutterSdkVersion": "3.10.5",
+  "flavors": {
+    "dev": {
+      "name": "dev",
+      "description": "Development flavor",
+      "buildType": "debug",
+      "buildNumber": "1"
+    },
+    "prod": {
+      "name": "prod",
+      "description": "Production flavor",
+      "buildType": "release",
+      "buildNumber": "1"
+    }
+  }
+}
