@@ -31,6 +31,8 @@ class _HomeMainPageState extends State<HomeMainPage> with SingleTickerProviderSt
           children: [
             Expanded(
               child: TabBar(
+                physics: const NeverScrollableScrollPhysics(),
+                isScrollable: false,
                 tabs: [
                   Tab(text: AppLocalizations.of(context).todo),
                   Tab(text: AppLocalizations.of(context).doing),
@@ -38,9 +40,10 @@ class _HomeMainPageState extends State<HomeMainPage> with SingleTickerProviderSt
                 ],
               ),
             ),
-            Expanded(
+            const Expanded(
               flex: 11,
               child: TabBarView(
+                physics:  NeverScrollableScrollPhysics(),
                 children: [
                   HomePageView(),
                   DoingStatusPage(),

@@ -120,7 +120,7 @@ class DioHttpClient implements HttpClient {
       } else {
         return jsonDecode(response.data as String) as Map<String, dynamic>;
       }
-    } on DioError catch (e) {
+    } on DioException catch (e) {
       throw _handleError(e);
     }
   }

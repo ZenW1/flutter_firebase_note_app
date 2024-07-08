@@ -16,6 +16,7 @@ import 'package:jong_jam/bloc/user_record/user_record_bloc.dart';
 import 'package:jong_jam/chart/chart_page.dart';
 import 'package:jong_jam/data/repo/app_storage.dart';
 import 'package:jong_jam/l10n/l10n.dart';
+import 'package:jong_jam/main/view/google_map_page.dart';
 import 'package:jong_jam/main/view/home_main_page.dart';
 import 'package:jong_jam/main/view/test_page.dart';
 import 'package:jong_jam/profile/view/profile_page.dart';
@@ -363,6 +364,19 @@ class _HomePageState extends State<HomePage> {
                   title: const Text('Create Todo'),
                   onTap: () {
                     context.go(TodoCreatePage.routePath);
+                  },
+                ),
+                ListTile(
+                  leading: const Icon(Icons.list),
+                  title: const Text('Google Map '),
+                  onTap: () {
+                    Navigator.of(context).pop();
+                     Navigator.of(context).push(
+                      CustomPageTransitionAnimation(
+                        widget: const GoogleMapPage(),
+                        direction: AxisDirection.right,
+                      ),
+                     );
                   },
                 ),
                 ListTile(

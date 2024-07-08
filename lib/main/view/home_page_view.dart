@@ -84,93 +84,96 @@ class _HomePageViewState extends State<HomePageView> {
       },
       child: BlocBuilder<TodoBloc, TodoState>(builder: (context, state) {
         if (state is TodoLoaded) {
-          return ListView.separated(
-            controller: scrollController,
-            itemBuilder: (context, index) {
-              if (state.todoList.isNotEmpty) {
-                return BlocListener<DoingStatusBloc, DoingStatusState>(
-                  listener: (context, states) {
-                    if (states is DoingAddedSuccess) {
-                      context.read<TodoBloc>().add(TodoDeleteEvent(todoID: state.todoList[index].id));
-                      context.read<TodoBloc>().add(const TodoGetEvent());
-                    } else if (states is TodoStatusLoading) {
-                      context.loaderOverlay.show();
-                    }
-                  },
-                  child: Container(
-                    margin: EdgeInsets.symmetric(horizontal: 10),
-                    child: Column(
-                      children: [
-                        TodoCardWidget(
-                          id: state.todoList[index].id,
-                          title: state.todoList[index].title,
-                          type: state.todoList[index].type,
-                          category: state.todoList[index].category,
-                          dateTime: state.todoList[index].dateTime,
-                          remindTime: state.todoList[index].remindTime,
-                          description: state.todoList[index].description,
-                          color: state.todoList[index].color,
-                          onTapDelete: () {
-                            context.read<TodoBloc>().add(TodoDeleteEvent(todoID: state.todoList[index].id));
-                            context.read<TodoBloc>().add(TodoGetEvent());
-                          },
-                          onTapSave: () async {
-                            // context.read<TodoStatusBloc>().add(
-                            //       TodoStatusAddEvent(
-                            //         todoModel: TodoModel(
-                            //           id: DateTime.now().microsecondsSinceEpoch.toString(),
-                            //           title: state.todoList[index].title,
-                            //           type: state.todoList[index].type,
-                            //           category: state.todoList[index].category,
-                            //           dateTime: state.todoList[index].dateTime,
-                            //           remindTime: state.todoList[index].remindTime,
-                            //           color: state.todoList[index].color,
-                            //           description: state.todoList[index].description,
-                            //         ),
-                            //       ),
-                            //     );
-                            context.read<DoingStatusBloc>().add(DoingAddEvent(
-                                  todoModel: TodoModel(
-                                    id: DateTime.now().microsecondsSinceEpoch.toString(),
-                                    title: state.todoList[index].title,
-                                    type: state.todoList[index].type,
-                                    category: state.todoList[index].category,
-                                    dateTime: state.todoList[index].dateTime,
-                                    remindTime: state.todoList[index].remindTime,
-                                    color: state.todoList[index].color,
-                                    description: state.todoList[index].description,
-                                  ),
-                                ));
-                          },
-                          onTap: () {
-                            _taskTitleController.text = state.todoList[index].title;
-                            _taskDescriptionController.text = state.todoList[index].description;
-                            _dateTimeController.text = state.todoList[index].remindTime;
-                            showModalBottomSheet(
-                              context: context,
-                              builder: (context) {
-                                return TodoCreateWidget(
-                                  taskTitleController: _taskTitleController,
-                                  taskDescriptionController: _taskDescriptionController,
-                                  dateTimeController: _dateTimeController,
-                                  todo: state.todoList[index],
-                                  documentId: state.todoList[index].id,
-                                  title: 'Update',
-                                );
-                              },
-                            );
-                          },
-                        ),
-                      ],
+          return Container(
+            margin: const  EdgeInsets.only(top: 10),
+            child: ListView.separated(
+              controller: scrollController,
+              itemBuilder: (context, index) {
+                if (state.todoList.isNotEmpty) {
+                  return BlocListener<DoingStatusBloc, DoingStatusState>(
+                    listener: (context, states) {
+                      if (states is DoingAddedSuccess) {
+                        context.read<TodoBloc>().add(TodoDeleteEvent(todoID: state.todoList[index].id));
+                        context.read<TodoBloc>().add(const TodoGetEvent());
+                      } else if (states is TodoStatusLoading) {
+                        context.loaderOverlay.show();
+                      }
+                    },
+                    child: Container(
+                      margin: EdgeInsets.symmetric(horizontal: 10),
+                      child: Column(
+                        children: [
+                          TodoCardWidget(
+                            id: state.todoList[index].id,
+                            title: state.todoList[index].title,
+                            type: state.todoList[index].type,
+                            category: state.todoList[index].category,
+                            dateTime: state.todoList[index].dateTime,
+                            remindTime: state.todoList[index].remindTime,
+                            description: state.todoList[index].description,
+                            color: state.todoList[index].color,
+                            onTapDelete: () {
+                              context.read<TodoBloc>().add(TodoDeleteEvent(todoID: state.todoList[index].id));
+                              context.read<TodoBloc>().add(TodoGetEvent());
+                            },
+                            onTapSave: () async {
+                              // context.read<TodoStatusBloc>().add(
+                              //       TodoStatusAddEvent(
+                              //         todoModel: TodoModel(
+                              //           id: DateTime.now().microsecondsSinceEpoch.toString(),
+                              //           title: state.todoList[index].title,
+                              //           type: state.todoList[index].type,
+                              //           category: state.todoList[index].category,
+                              //           dateTime: state.todoList[index].dateTime,
+                              //           remindTime: state.todoList[index].remindTime,
+                              //           color: state.todoList[index].color,
+                              //           description: state.todoList[index].description,
+                              //         ),
+                              //       ),
+                              //     );
+                              context.read<DoingStatusBloc>().add(DoingAddEvent(
+                                    todoModel: TodoModel(
+                                      id: DateTime.now().microsecondsSinceEpoch.toString(),
+                                      title: state.todoList[index].title,
+                                      type: state.todoList[index].type,
+                                      category: state.todoList[index].category,
+                                      dateTime: state.todoList[index].dateTime,
+                                      remindTime: state.todoList[index].remindTime,
+                                      color: state.todoList[index].color,
+                                      description: state.todoList[index].description,
+                                    ),
+                                  ));
+                            },
+                            onTap: () {
+                              _taskTitleController.text = state.todoList[index].title;
+                              _taskDescriptionController.text = state.todoList[index].description;
+                              _dateTimeController.text = state.todoList[index].remindTime;
+                              showModalBottomSheet(
+                                context: context,
+                                builder: (context) {
+                                  return TodoCreateWidget(
+                                    taskTitleController: _taskTitleController,
+                                    taskDescriptionController: _taskDescriptionController,
+                                    dateTimeController: _dateTimeController,
+                                    todo: state.todoList[index],
+                                    documentId: state.todoList[index].id,
+                                    title: 'Update',
+                                  );
+                                },
+                              );
+                            },
+                          ),
+                        ],
+                      ),
                     ),
-                  ),
-                );
-              }
-            },
-            separatorBuilder: (context, index) {
-              return const SizedBox(height: 10);
-            },
-            itemCount: state.todoList.length,
+                  );
+                }
+              },
+              separatorBuilder: (context, index) {
+                return const SizedBox(height: 10);
+              },
+              itemCount: state.todoList.length,
+            ),
           );
         } else if (state is TodoFailure) {
           return Center(child: Text(state.message));

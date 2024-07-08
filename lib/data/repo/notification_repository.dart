@@ -15,8 +15,7 @@ class NotificationRepository {
     await dioHttpClient.post('https://fcm.googleapis.com/fcm/send',
         headers: <String, String>{
           'Content-Type': 'application/json',
-          'Authorization':
-              'key=AAAA9jk7No4:APA91bGg0kSTD8CN4KIuO-gJ71qJpkR24W0eK9Rp6w1WrhEerK5iLhtNtM3kyLfxyJ6_1zK5Y9l2Ks7DPFyMF7KjKGEVrG9RHC9BUpSQpX5woBFScwSqWe1ikoUhVq3xlxU_9_qG3tNU',
+          'Authorization': 'key=AAAA9jk7No4:APA91bGg0kSTD8CN4KIuO-gJ71qJpkR24W0eK9Rp6w1WrhEerK5iLhtNtM3kyLfxyJ6_1zK5Y9l2Ks7DPFyMF7KjKGEVrG9RHC9BUpSQpX5woBFScwSqWe1ikoUhVq3xlxU_9_qG3tNU',
         },
         body: jsonEncode(<String, dynamic>{
           "priority": "high",

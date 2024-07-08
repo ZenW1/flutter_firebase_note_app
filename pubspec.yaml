@@ -48,6 +48,10 @@ dependencies:
   flutter_gen_runner: ^5.2.0
   intl: any
   flutter_secure_storage: ^9.0.0
+  geocoding: ^3.0.0
+  google_maps_flutter: ^2.5.3
+  location: ^5.0.3
+  loading_animation_widget: ^1.2.1
 
 
 dev_dependencies:
